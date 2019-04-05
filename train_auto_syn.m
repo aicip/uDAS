@@ -1,7 +1,27 @@
 %%======================================================================
 %% Written by Ying Qu <yqu3@vols.utk.edu>, September 2017
 %% All Rights Reserved
-%% part-based auto-encoder for spectral unmxing
+%% uDAS: An Untied Denoising Autoencoder with Sparsity for Spectral Unmixing
+%% Please cite the following paper
+%% 
+% @article{qu2019udas,
+%   title={uDAS: An untied denoising autoencoder with sparsity for spectral unmixing},
+%   author={Qu, Ying and Qi, Hairong},
+%   journal={IEEE Transactions on Geoscience and Remote Sensing},
+%   volume={57},
+%   number={3},
+%   pages={1698--1712},
+%   year={2019},
+%   publisher={IEEE}
+% }
+% @article{qu2017spectral,
+%   title={Spectral unmixing through part-based non-negative constraint denoising autoencoder},
+%   author={Qu, Ying and Guo, Rui and Qi, Hairong},
+%   journal ={2017 IEEE International Geoscience and Remote Sensing Symposium (IGARSS)},
+%   pages={209--212},
+%   year={2017},
+%   organization={IEEE}
+% }
 %%======================================================================
 
 % load hyperspectral data
@@ -43,7 +63,7 @@ Y = mixed;
 my = mean(Y,2);
 Y = Y-repmat(my,1,n);
 [Uq,DE] = svd(Y*Y'/n);
-Uq = Uq(:,1:c-1);    % I'm using svd because I've found errors in svds
+Uq = Uq(:,1:c-1);    
 sing_values = diag(DE);
 
 % define affine projection of dimension q-1 and lift
